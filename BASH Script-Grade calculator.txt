@@ -1,0 +1,98 @@
+#!/bin/bash
+
+#Name: Younes Boutaleb
+#Student Number: 041019068
+#Course: CST8102 Operating Systems Fund (GNULinux)
+#Section: 300/302
+#Description: This script prompts the user to enter assignments and tests' marks, calculates the final grade and then displays the final grades
+
+#clear the screan's content 
+clear
+
+#asks user to enter assigment mark and then creates assignment variable where it will store it
+read -p "Enter Assignment mark (0 - 40): " assignment
+
+#asks user to enter test #1 mark and then creates test1 variable where it will store it 
+read -p "Enter Test 1 mark (0 - 15): " test1
+
+#asks user to enter test 2  mark and then creates test2 variable where it will store it 
+read -p "Enter Test 2 mark (0 - 15): " test2
+
+#asks user to enter final exam  mark and then creates final variable where it will store it
+read -p "Enter Final exam mark (0 - 30): " final
+
+#calculates the final grade which is the sum of user's inputs then creates grade variable where it will store it
+grade=$(($assignment+$test1+$test2+$final))
+
+#Defines the letter grade using the grade variable value
+#creates a letter variable where if will store the letter grade
+#if grade value is betwen 0 and 49 then assigns F to letter variable
+if [ $grade -ge 0 ] && [ $grade -le 49 ]
+then 
+	letter="F"
+
+#if grade value is betwen 50 and 52 then assigns D- to letter variable
+elif [ $grade -ge 50 ] && [ $grade -le 52 ]
+then
+	letter="D-"
+
+#if grade value is betwen 53  and 56 then assigns D+ to letter variable
+elif [ $grade -ge 53 ] && [ $grade -le 56 ]
+then    
+        letter="D"
+
+#if grade value is betwen 57 and 59 then assigns D+ to letter variable
+elif [ $grade -ge 57 ] && [ $grade -le 59 ]
+then    
+        letter="D+"
+        
+#if grade value is betwen 60 and 62 then assigns C- to letter variable
+elif [ $grade -ge 60 ] && [ $grade -le 62 ]
+then
+        letter="C-"
+
+#if grade value is betwen 63 and 66 then assigns C to letter variable
+elif [ $grade -ge 63 ] && [ $grade -le 66 ]
+then    
+        letter="C"
+        
+#if grade value is betwen 67 and 69 then assigns C+ to letter variable
+elif [ $grade -ge 67 ] && [ $grade -le 69 ]
+then
+        letter="C+"
+
+#if grade value is betwen 70 and 72 then assigns B- to letter variable
+elif [ $grade -ge 70 ] && [ $grade -le 72 ]
+then
+        letter="B-"
+
+#if grade value is betwen 73 and 76 then assigns B to letter variable
+elif [ $grade -ge 73 ] && [ $grade -le 76 ]
+then
+        letter="B"
+
+#if grade value is betwen77 and 79 then assigns B+ to letter variable
+elif [ $grade -ge 77 ] && [ $grade -le 79 ]
+then
+        letter="B+"
+
+#if grade value is betwen 80 and 84 then assigns A- to letter variable
+elif [ $grade -ge 80 ] && [ $grade -le 84 ]
+then
+        letter="A-"
+
+#if grade value is betwen 85 and 89 then assigns A to letter variable
+elif [ $grade -ge 85 ] && [ $grade -le 89 ]
+then
+        letter="A"
+
+#if grade value is betwen 90 and 100 then assigns A+ to letter variable
+else
+        letter="A+"
+
+#end if  decision structure
+fi
+
+#insert a line break
+#Output final numeric and letter grades
+echo -e "\nYour final numeric grade is $grade, and your final\nletter grade is $letter"
