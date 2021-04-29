@@ -1,0 +1,176 @@
+#!/bin/bash
+
+#Assignment number: Lab9
+#Name: Younes Boutaleb
+#Student Number: 041019068
+#Course: CST8102 Operating Systems Fund (GNULinux)
+#Section: 300/302
+#Script name: mycalc.sh
+#Submission date: 2021-04-16
+#Description: This script performs addition and subtraction operations
+
+# this add fuction accepts two integers and return their sum
+function add ()
+{
+	clear
+	((result= $1 + $2))
+	echo "The result of $1 plus $2 equals $result"
+}
+
+# this subtract fuction accepts two integers and subtract the second one from the first one
+function subtract ()
+{
+        clear
+	((result= $1 - $2))
+        echo "The result of $1 minus $2 equals $result"
+}
+
+#this function displays menu1
+function displaymenu1 ()
+{
+
+	clear
+	echo "C) Calculation"
+	echo "X) Exit"
+	echo ""
+}
+
+#this function displays menu2
+function displaymenu2 ()
+{
+        clear
+        echo "Please enter an enteger number or X to exit: "
+}
+
+#this function displays menu3
+function displaymenu3 ()
+{
+        clear
+	echo "+) Add"
+	echo "-) Subtract"
+	echo "X) Exit"
+}
+
+#if no argument is entered the script displays menu 1 
+if [ $# -eq 0 ]
+then
+	#the script will loop untill the user decides to exit
+	choice=n
+	#Any time the user tapes X or x the script will exit
+	while [ $choice != "X" ] && [ $choice != "x" ]
+	do
+		#scripts clears the screan and display menu1
+		displaymenu1
+		#the user choose an option from the menu 
+		read choice
+		#if the user decides to do calculations then he will be prompted to enter the operation details
+		if [ $choice = "C" ] || [ $choice = "c" ]
+		then	
+	         	#scripts clears the screan and display menu2
+			displaymenu2
+			read menu2choice 
+		        #if the user's input is not x or X the script will read it and store it in the memory
+			if [ $menu2choice = "X" ] || [ $menu2choice = "x" ]
+			then
+				choice="X"
+				clear
+				echo "Goodbye!"
+			else
+				operand1=$menu2choice
+			
+		        	#scripts clears the screan and display menu3
+				displaymenu3
+				#if the user's input is not x or X the script will read it and store it in the memory
+			        read menu3choice
+			        if [ $menu3choice = "X" ] || [ $menu3choice = "x" ]
+		         	then
+			        	choice="X"
+					clear
+                                        echo "Goodbye!"
+			        #if the user's input is not - or + the script will display an error message and go back to while loop otherwise it will read the input and store it in memory
+				elif [ $menu3choice != "+" ] && [ $menu3choice != "-" ]
+				then
+
+					clear
+					echo "Invalid input, must be x/X, + or -"
+                                        sleep 3
+				else
+
+			        	operator=$menu3choice
+			
+			                #scripts clears the screan and display menu2
+					displaymenu2
+			                read menu2choice
+					#if the user's input is not x or X the script will read it and store it in the memory
+                                        if [ $menu2choice = "X" ] || [ $menu2choice = "x" ]
+                                        then
+			                	choice="X"
+						clear
+				                echo "Goodbye!"
+                                        
+		                        else
+			                	operand2=$menu2choice
+
+			                        #if all inputs are accurate: 
+						#if the user entered + the script will execute the add fuction and display the result on the screen then freezes for 3 seconds
+						if [ $operator = "+" ]
+		                                then
+							add $operand1 $operand2
+			                        	sleep 3
+
+						#if the user entered - the script will execute the subtract fuction and display the result on the screen then freezes for 3 seconds
+						else [ $operator = "-" ]
+						
+							subtract $operand1 $operand2
+				                        sleep 3
+			                       fi
+         		              fi
+
+			       fi				  
+		      fi
+
+	      #if the tapes X or x the script will exit 
+	      elif [ $choice = "X" ] || [ $choice = "x" ]
+	       then
+		       clear
+	       	       echo "Goodbye!"
+
+	      #Otherwise the script will display an error message and go back to while loop
+	      else 
+		   clear
+	           echo "Invalid input, must be x/X or c/C"
+		   sleep 3
+	      fi
+
+              #End while loop and quit the script
+             done
+#if the user enters 3 parameters then the script will check the second one
+elif [ $# -eq 3 ]
+then
+	#if the second parameter is + then it will execute the add function
+	if [ "$2" == "+" ]
+        then
+		add $1 $3
+                sleep 3
+
+	#if the second parameter is - then it will execute the add function
+	elif [ "$2" == "-" ]
+	then
+                subtract $1 $3
+                sleep 3
+
+	#otherwise it will display an error message and exit
+	else
+		clear
+		echo "Invalid input, second parameter must be either + or -"
+		sleep 3
+
+	fi
+
+#if the user enters a number of parameters other than 0 or 3 then it  will display an error message and exit
+else
+       clear
+       echo "Invalid input, must enter 0 or 3 parameters"
+       sleep 3
+
+fi
