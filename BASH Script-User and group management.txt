@@ -1,0 +1,119 @@
+#!/bin/bash
+
+#Assignment number: Lab8
+#Name: Younes Boutaleb
+#Student Number: 041019068
+#Course: CST8102 Operating Systems Fund (GNULinux)
+#Section: 300/302
+#Script name: myscript.sh
+#Submission date: 2021-03-30
+#Description: This script executes commands that create and manage user accounts
+
+#while loop condition. It will take the option entered by the user
+choice=n
+
+#this loop will continue until  user enters Q or q 
+while [ "$choice" != "Q" ] && [ "$choice" != "q" ]
+do
+
+#clear the screan's content
+clear
+
+#this is the options menu
+echo "Choose one of the following options:"
+echo "A Create a user account"
+echo "B Delete a user account"
+echo "C Change supplementary group for a user account"
+echo "D Change initial group for a user account"
+echo "E Change default login shell for a user account"
+echo "F Change account expiration date for a user account"
+echo "Q Quit"
+
+#reads user's input and store it in a choice variable 
+read -p  "What would you like to do?: " choice   
+
+#clear the screan's content
+clear
+
+#if the user enter A or a the script will ask for user details
+#then creates a new user account
+if [ "$choice" == "A" ] || [ "$choice" == "a" ]
+then
+        read -p  "Enter Username: " username
+	read -p  "Enter User's home directory (using absolute path): " path
+	read -p  "Enter Default login shell (using absolute path): " loginshell
+        useradd -d $path -m -s $loginshell $username
+#the script will sleep for 3 seconds        	
+	sleep 3 
+
+#if the user enter B or b the script will ask for account username
+#then delete it
+elif [ "$choice" == "B" ] || [ "$choice" == "b" ]
+then
+	read -p  "Enter Username: " username
+        userdel -r $username
+#the script will sleep for 3 seconds
+	sleep 3
+
+#if the user enter C or c the script will ask for username and group name
+#then set it as a supplementary group for the given username
+elif [ "$choice" == "C" ] || [ "$choice" == "c" ]
+then
+	read -p  "Enter Username: " username
+	read -p  "Enter group name: " group
+	usermod -G $group $username
+	
+#the script will sleep for 3 seconds
+	sleep 3
+
+#if the user enter D or d the script will ask for username and group name
+#then set it as the initial group for the given username
+elif [ "$choice" == "D" ] || [ "$choice" == "d" ]
+then
+       	read -p  "Enter Username: " username
+       	read -p  "Enter group name: " group
+        usermod -g $group $username
+	
+#the script will sleep for 3 seconds
+	sleep 3
+
+#if the user enter E or e the script will ask for username and shell name
+#then set it as the login shell for the given username
+elif [ "$choice" == "E" ] || [ "$choice" == "e" ]
+then
+        read -p  "Enter Username: " username
+        read -p  "Enter shell name: " shellname
+        chsh -s /bin/$shellname $username
+	
+#the script will sleep for 3 seconds
+        sleep 3
+
+#if the user enter F or f the script will ask for username and expiration date
+#then set it as the expiration date for the given username
+elif [ "$choice" == "F" ] || [ "$choice" == "f" ]
+then
+        read -p  "Enter Username: " username
+	read -p  "expiration date (YYYY-MM-DD): " expdate
+        usermod -e $expdate $username
+	
+#the script will sleep for 3 seconds
+        sleep 3
+
+#if the user enter Q or q the script will end
+elif [ "$choice" == "Q" ] || [ "$choice" == "q" ]
+then
+	echo
+
+#if User enters any other input the scriPt will display an error message 
+else
+	echo "Invalid option!"
+        
+#the script will sleep for 3 seconds
+	sleep 3
+
+#End if statement and go back to while loop
+fi
+
+#End while loop and quit the script
+done
+
