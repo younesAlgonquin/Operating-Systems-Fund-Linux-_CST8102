@@ -1,12 +1,5 @@
 #!/bin/bash
 
-#Assignment number: Lab9
-#Name: Younes Boutaleb
-#Student Number: 041019068
-#Course: CST8102 Operating Systems Fund (GNULinux)
-#Section: 300/302
-#Script name: mycalc.sh
-#Submission date: 2021-04-16
 #Description: This script performs addition and subtraction operations
 
 # this add fuction accepts two integers and return their sum
