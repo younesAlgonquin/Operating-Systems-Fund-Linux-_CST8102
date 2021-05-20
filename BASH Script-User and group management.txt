@@ -1,12 +1,5 @@
 #!/bin/bash
 
-#Assignment number: Lab8
-#Name: Younes Boutaleb
-#Student Number: 041019068
-#Course: CST8102 Operating Systems Fund (GNULinux)
-#Section: 300/302
-#Script name: myscript.sh
-#Submission date: 2021-03-30
 #Description: This script executes commands that create and manage user accounts
 
 #while loop condition. It will take the option entered by the user
