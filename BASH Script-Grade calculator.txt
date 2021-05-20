@@ -1,9 +1,5 @@
 #!/bin/bash
 
-#Name: Younes Boutaleb
-#Student Number: 041019068
-#Course: CST8102 Operating Systems Fund (GNULinux)
-#Section: 300/302
 #Description: This script prompts the user to enter assignments and tests' marks, calculates the final grade and then displays the final grades
 
 #clear the screan's content 
